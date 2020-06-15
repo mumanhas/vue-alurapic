@@ -3,13 +3,14 @@
     <h1>{{ title }}</h1>
     <ul>
       <li v-for="photo of photos" :key="photo.id">
-        <img :src="photo.src" :alt="photo.text">
+        <img :src="photo.url" :alt="photo.titulo">
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -17,17 +18,13 @@ export default {
   data() {
     return {
       title : "Alurapic",
-      photos: [
-        {
-          src: 'https://media.gazetadopovo.com.br/viver-bem/2018/11/dog3-0e01be20.jpg',
-          text: 'cachorro'
-        },
-        {
-          src: 'https://media.gazetadopovo.com.br/viver-bem/2018/11/dog3-0e01be20.jpg',
-          text: 'cachorro fofinho'
-        }
-      ] 
+      photos: [] 
     }
+  },
+
+  created() {
+    axios.get('http://localhost:3000/v1/fotos')
+    .then(res => this.photos = res.data, err => console.log(err))
   }
 }
 </script>
