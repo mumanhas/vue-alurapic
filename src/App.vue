@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>{{ title }}</h1>
+    <ul>
+      <li v-for="photo of photos" :key="photo.id">
+        <img :src="photo.src" :alt="photo.text">
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+
+  data() {
+    return {
+      title : "Alurapic",
+      photos: [
+        {
+          src: 'https://media.gazetadopovo.com.br/viver-bem/2018/11/dog3-0e01be20.jpg',
+          text: 'cachorro'
+        },
+        {
+          src: 'https://media.gazetadopovo.com.br/viver-bem/2018/11/dog3-0e01be20.jpg',
+          text: 'cachorro fofinho'
+        }
+      ] 
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
