@@ -3,7 +3,7 @@
 
     <h1 class="titulo">{{ titulo }}</h1>
 
-    <input v-on:input="filtro = $event.target.value" 
+    <input @input="filtro = $event.target.value" 
     type="search" 
     class="filter" 
     placeholder="filtre pelo titulo da foto">
@@ -12,7 +12,7 @@
       <li class="lista-fotos-item" v-for="foto of fotosComFiltro" :key="foto.id">
 
         <painel :titulo="foto.titulo">
-          <img class="imagem-responsiva" :src="foto.url" :alt="foto.titulo">
+          <imagem-responsiva :src="foto.url" :alt="foto.titulo" />
         </painel>
 
       </li>
@@ -24,11 +24,13 @@
 <script>
 import axios from 'axios';
 import Painel from './components/shared/painel/Painel';
+import ImagemResponsiva from './components/shared/imagem-responsiva/ImagemResponsiva';
 
 export default {
 
   components: {
-    painel : Painel 
+    painel : Painel,
+    'imagem-responsiva' : ImagemResponsiva 
   },
 
   data() {
@@ -77,10 +79,6 @@ export default {
 
   .lista-fotos .lista-fotos-item {
     display: inline-block;
-  }
-
-  .imagem-responsiva {
-    width: 100%;
   }
 
   .filter {
