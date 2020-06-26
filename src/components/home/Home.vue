@@ -13,6 +13,7 @@
       <li class="lista-fotos-item" v-for="foto of fotosComFiltro" :key="foto.id">
         <painel :titulo="foto.titulo">
           <imagem-responsiva :src="foto.url" :alt="foto.titulo" />
+          <meu-botao rotulo="remover" tipo="button" @click.native="remove(foto)"/>
         </painel>
       </li>
     </ul>
@@ -23,12 +24,14 @@
   import axios from 'axios';
   import Painel from '../shared/painel/Painel';
   import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva';
+  import Botao from '../shared/botao/Botao.vue';
 
   export default {
 
     components: {
       painel : Painel,
-      'imagem-responsiva' : ImagemResponsiva 
+      'imagem-responsiva' : ImagemResponsiva,
+      'meu-botao' : Botao
     },
 
     data() {
@@ -37,6 +40,17 @@
         fotos: [],
         filtro: ''
       }
+    },
+
+    methods: {
+
+      remove(foto){
+
+        if(confirm('Confirma?')){
+          alert(foto.titulo + 'foi removida');
+        }
+      }
+
     },
 
     computed: {
