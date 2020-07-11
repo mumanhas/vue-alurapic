@@ -12,7 +12,10 @@
     <ul class="lista-fotos">
       <li class="lista-fotos-item" v-for="foto of fotosComFiltro" :key="foto.id">
         <painel :titulo="foto.titulo">
-          <imagem-responsiva :src="foto.url" :alt="foto.titulo" />
+          <imagem-responsiva 
+          :src="foto.url" 
+          :alt="foto.titulo" 
+          v-meu-transform:scale.animate="1.2" />
           <meu-botao 
           rotulo="remover" 
           tipo="button" 
@@ -31,12 +34,18 @@
   import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva';
   import Botao from '../shared/botao/Botao.vue';
 
+  import transform from '@/directives/Transform.js'
+
   export default {
 
     components: {
       painel : Painel,
       'imagem-responsiva' : ImagemResponsiva,
       'meu-botao' : Botao
+    },
+
+    directives : {
+      'meu-transform' : transform
     },
 
     data() {
